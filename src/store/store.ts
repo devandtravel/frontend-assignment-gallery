@@ -1,10 +1,12 @@
-import { photosReducer } from './reducers/PhotoSlice'
+import { photosAPI } from './../services/PhotosService'
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 
 export const store = configureStore({
   reducer: {
-    photosReducer,
+    [photosAPI.reducerPath]: photosAPI.reducer,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware().concat(photosAPI.middleware),
 })
 
 export type AppDispatch = typeof store.dispatch

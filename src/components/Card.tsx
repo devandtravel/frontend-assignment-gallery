@@ -5,5 +5,9 @@ type CardProps = {
 }
 
 export const Card = ({ photo }: CardProps) => (
-  <article>{JSON.stringify(photo, null, 2)}</article>
+  <article>
+    <div>{JSON.stringify(photo, null, 2)}</div>
+    <button>DELETE</button>
+    <hr />
+  </article>
 )
