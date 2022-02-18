@@ -19,7 +19,7 @@ export const Album = () => {
         <button
           onClick={() =>
             setPage(page =>
-              page > 1 ? page - 1 : (page = maxPhotosFromAPI / limit)
+              page > 1 ? page - 1 : (page = Math.ceil(maxPhotosFromAPI / limit))
             )
           }>
           PREVIOUS PAGE
@@ -36,7 +36,9 @@ export const Album = () => {
         <button
           onClick={() =>
             setLimit(limit =>
-              limit > 1 ? limit - 1 : (limit = maxPhotosFromAPI)
+              limit > 1
+                ? limit - 1
+                : (limit = maxPhotosFromAPI - page * (limit - 1))
             )
           }>
           DECREASE LIMIT
@@ -46,7 +48,11 @@ export const Album = () => {
         <button
           onClick={() =>
             setLimit(limit =>
-              limit < maxPhotosFromAPI ? limit + 1 : (limit = 1)
+              limit < maxPhotosFromAPI
+                ? maxPhotosFromAPI >= page * (limit + 1)
+                  ? limit + 1
+                  : limit
+                : (limit = 1)
             )
           }>
           INCREASE LIMIT
@@ -63,7 +69,7 @@ export const Album = () => {
           ))}
         </>
       ) : (
-        <p>No photos found</p>
+        <p>No photos found. Try to change page or limit.</p>
       )}
     </section>
   )
