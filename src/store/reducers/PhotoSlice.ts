@@ -1,3 +1,4 @@
+import { fetchPhotos } from './ActionCreators'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Photo } from './../../models/Photo'
 interface PhotosState {
@@ -15,16 +16,17 @@ const initialState: PhotosState = {
 export const photosSlice = createSlice({
   name: 'photos',
   initialState,
-  reducers: {
-    fetchPhotos(state) {
-      state.isLoading = true
-    },
-    fetchPhotosSuccess(state, action: PayloadAction<Photo[]>) {
+  reducers: {},
+  extraReducers: {
+    [fetchPhotos.fulfilled.type]: (state, action: PayloadAction<Photo[]>) => {
       state.isLoading = false
       state.error = ''
       state.photos = action.payload
     },
-    fetchPhotosError(state, action: PayloadAction<string>) {
+    [fetchPhotos.pending.type]: state => {
+      state.isLoading = true
+    },
+    [fetchPhotos.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = false
       state.error = action.payload
     },
