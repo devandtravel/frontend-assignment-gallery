@@ -4,11 +4,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 interface PhotosState {
   photos: Photo[]
   deletedPhotoIds: number[]
+  selectedAlbumId: number
 }
 
 const initialState: PhotosState = {
   photos: [],
-  deletedPhotoIds: []
+  deletedPhotoIds: [],
+  selectedAlbumId: 1
 }
 
 export const photosSlice = createSlice({
@@ -21,7 +23,17 @@ export const photosSlice = createSlice({
     },
     setPhotos(state, action: PayloadAction<Photo[]>) {
       state.photos = action.payload.filter(
-        photo => !state.deletedPhotoIds.includes(photo.id)
+        photo =>
+          !state.deletedPhotoIds.includes(photo.id) &&
+          photo.albumId === state.selectedAlbumId
+      )
+    },
+    setAlbum(state, action: PayloadAction<number>) {
+      state.selectedAlbumId = action.payload
+      state.photos = state.photos.filter(
+        photo =>
+          !state.deletedPhotoIds.includes(photo.id) &&
+          photo.albumId === action.payload
       )
     }
   }

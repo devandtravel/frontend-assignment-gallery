@@ -8,16 +8,18 @@ export const photosAPI = createApi({
   }),
   tagTypes: ['Photo'],
   endpoints: build => ({
-    fetchPhotos: build.query<Photo[], [number, number]>({
-      query: ([page, limit]: [number, number]) => ({
+    fetchPhotos: build.query<Photo[], [number, number, number]>({
+      query: ([page, limit, albumId]: [number, number, number]) => ({
         url: `/photos`,
         params: {
+          albumId: albumId,
           _limit: limit,
           _page: page
         }
       }),
       providesTags: () => ['Photo']
     }),
+
     deletePhoto: build.mutation<Photo, number>({
       query: id => ({
         url: `/photos/${id}`,
