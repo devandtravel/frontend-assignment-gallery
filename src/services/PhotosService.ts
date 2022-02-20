@@ -4,38 +4,26 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const photosAPI = createApi({
   reducerPath: 'photosAPI',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://jsonplaceholder.typicode.com',
+    baseUrl: 'http://jsonplaceholder.typicode.com'
   }),
+  tagTypes: ['Photo'],
   endpoints: build => ({
-    fetchAllPhotos: build.query<Photo[], ''>({
-      query: () => ({
-        url: `/photos`,
-      }),
-    }),
     fetchPhotos: build.query<Photo[], [number, number]>({
       query: ([page, limit]: [number, number]) => ({
         url: `/photos`,
         params: {
           _limit: limit,
-          _page: page,
-        },
+          _page: page
+        }
       }),
+      providesTags: () => ['Photo']
     }),
-    fetchSeveralPhotos: build.query<Photo[], number>({
-      query: (limit: number) => ({
-        url: `/photos?_limit=${limit}`,
-        params: {
-          _limit: limit,
-        },
+    deletePhoto: build.mutation<Photo, number>({
+      query: id => ({
+        url: `/photos/${id}`,
+        method: 'DELETE'
       }),
-    }),
-    fetchAlbum: build.query<Photo[], number>({
-      query: (albumId: number) => ({
-        url: `/photos`,
-        params: {
-          albumId: albumId,
-        },
-      }),
-    }),
-  }),
+      invalidatesTags: ['Photo']
+    })
+  })
 })
