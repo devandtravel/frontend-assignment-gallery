@@ -1,8 +1,9 @@
 import { ReactChild, useContext } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 
 import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
-import { AppBar, Box, CssBaseline, IconButton, Toolbar } from '@mui/material'
+import { AppBar, Box, CssBaseline, IconButton, Link, Toolbar } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 
 import { ColorModeContext } from '../ThemedApp'
@@ -26,16 +27,31 @@ export const Header = ({ children }: HeaderProps) => {
           }}>
           {children}
 
-          <h1>Photo Gallery</h1>
+          <h1>
+            <Link
+              component={RouterLink}
+              to='/'
+              underline='none'
+              color='inherit'>
+              Photo Gallery
+            </Link>
+          </h1>
           <Box>
+            <Link
+              component={RouterLink}
+              to='/about'
+              underline='none'
+              color='inherit'>
+              About
+            </Link>
             <IconButton
-              sx={{ m: 1, p: 1 }}
+              sx={{ ml: 4, mr: 2, p: 1 }}
               onClick={colorMode.toggleColorMode}
               color='inherit'>
               {theme.palette.mode === 'dark' ? (
-                <Brightness7Icon sx={{ m: 1 }} />
+                <Brightness7Icon />
               ) : (
-                <Brightness4Icon sx={{ m: 1 }} />
+                <Brightness4Icon />
               )}
             </IconButton>
           </Box>
