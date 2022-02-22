@@ -1,5 +1,6 @@
-import { Photo } from './../models/Photo'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+
+import { Photo } from '../models/Photo'
 
 export const photosAPI = createApi({
   reducerPath: 'photosAPI',

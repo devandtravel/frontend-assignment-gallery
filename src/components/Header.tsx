@@ -1,8 +1,10 @@
 import { ReactChild, useContext } from 'react'
+
 import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
 import { AppBar, Box, CssBaseline, IconButton, Toolbar } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
+
 import { ColorModeContext } from '../ThemedApp'
 
 type HeaderProps = {

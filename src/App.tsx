@@ -1,12 +1,13 @@
+import { useEffect, useState } from 'react'
+
 import { Album } from './components/Album'
 import { Header } from './components/Header'
-import { photosAPI } from './services/PhotosService'
-import { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from './store/hooks'
-import { photosSlice } from './store/reducers/PhotosSlice'
-import { Settings } from './components/Settings'
 import { Pagination } from './components/Pagination'
 import { SelectAlbum } from './components/SelectAlbum'
+import { Settings } from './components/Settings'
+import { photosAPI } from './services/PhotosService'
+import { useAppDispatch, useAppSelector } from './store/hooks'
+import { photosSlice } from './store/reducers/PhotosSlice'
 
 export const App = () => {
   const dispatch = useAppDispatch()
@@ -24,14 +25,12 @@ export const App = () => {
     isLoading
   } = photosAPI.useFetchPhotosQuery([page, limit, albumId])
   const localPhotos = useAppSelector(state => state.photosReducer.photos)
-
-  const setLocalPhotos = photosSlice.actions.setPhotos
-  const { setAlbum } = photosSlice.actions
+  const { setAlbum, setPhotos } = photosSlice.actions
 
   useEffect(() => {
     dispatch(setAlbum(albumId))
-    photos && dispatch(setLocalPhotos(photos))
-  }, [photos, setLocalPhotos, albumId, setAlbum, dispatch])
+    photos && dispatch(setPhotos(photos))
+  }, [photos, setPhotos, albumId, setAlbum, dispatch])
 
   const decreaseLimit = () => {
     setLimit(limit =>

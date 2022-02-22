@@ -1,6 +1,7 @@
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
+
+import { photosAPI } from '../services/PhotosService'
 import { photosReducer } from './reducers/PhotosSlice'
-import { photosAPI } from './../services/PhotosService'
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 
 export const store = configureStore({
   reducer: {

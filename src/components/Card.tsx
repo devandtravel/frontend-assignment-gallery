@@ -1,15 +1,10 @@
-import { Photo } from '../models/Photo'
-import {
-  Modal,
-  Typography,
-  Box,
-  Button,
-  CardMedia,
-  CardActions,
-  Card as MaterialCard,
-  CardContent
-} from '@mui/material'
 import { MouseEvent, useState } from 'react'
+
+import {
+    Box, Button, Card as MaterialCard, CardActions, CardContent, CardMedia, Modal, Typography
+} from '@mui/material'
+
+import { Photo } from '../models/Photo'
 
 const style = {
   position: 'absolute' as 'absolute',

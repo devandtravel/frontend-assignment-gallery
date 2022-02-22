@@ -1,5 +1,6 @@
-import { Photo } from './../../models/Photo'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+import { Photo } from '../../models/Photo'
 
 interface PhotosState {
   photos: Photo[]

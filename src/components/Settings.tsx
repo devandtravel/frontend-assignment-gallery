@@ -1,7 +1,8 @@
-import { Box, Toolbar, Typography } from '@mui/material'
+import { ReactChild } from 'react'
+
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import { ReactChild } from 'react'
+import { Box, Toolbar, Typography } from '@mui/material'
 
 type SettingsProps = {
   limit: number

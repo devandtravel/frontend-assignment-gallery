@@ -1,12 +1,14 @@
 import { v4 as getUnicKey } from 'uuid'
-import { Card } from './Card'
+
 import { Box } from '@mui/material'
-import { Photo } from '../models/Photo'
 import { SerializedError } from '@reduxjs/toolkit'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query'
+
+import { Photo } from '../models/Photo'
 import { photosAPI } from '../services/PhotosService'
 import { useAppDispatch } from '../store/hooks'
 import { photosSlice } from '../store/reducers/PhotosSlice'
+import { Card } from './Card'
 
 type AlbumProps = {
   photos: Photo[]
